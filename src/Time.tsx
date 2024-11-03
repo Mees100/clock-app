@@ -8,27 +8,32 @@ type CurrentTime = {
 // een promise, gebruik je bij asynchrone code, je hebt ook een nieuwere syntax (async/await) hiervoor maar die heb ik bewust nog even weggelaten :)
 function getTime(zone: string): Promise<CurrentTime> {
   const request = fetch(
-    `https://www.timeapi.io/api/time/current/zone?timeZone=Europe%2F${zone}`
+    `https://www.timeapi.io/api/time/current/zone?timeZone=${zone}`
   );
   return request.then((response) => response.json());
 }
 
-function Time() {
+function Time({ zone }: { zone: string }) {
   const [time, setTime] = useState<CurrentTime>();
-  const [zone, setZone] = useState<string>("Amsterdam");
+  // deze state staat nu in App.tsx en wordt doorgegeven als prop en is hier niet meer nodig.
+  // const [zone, setZone] = useState<string>("Amsterdam");
 
   useEffect(() => {
     getTime(zone).then((r) => setTime(r));
   }, [zone]);
 
   return (
-    <>
+    <div>
       {typeof time === "undefined" && <span>Loading</span>}
-      {time && <span>Het is {time.dateTime}</span>}
-      <button onClick={() => setZone("London")}>London</button>
+      {time && (
+        <span>
+          Het is in {zone}: {time.dateTime}
+        </span>
+      )}
+      {/* <button onClick={() => setZone("London")}>London</button>
       <button onClick={() => setZone("Amsterdam")}>Amsterdam</button>
-      <button onClick={() => setZone("Helsinki")}>Helsinki</button>
-    </>
+      <button onClick={() => setZone("Helsinki")}>Helsinki</button> */}
+    </div>
   );
 }
 
