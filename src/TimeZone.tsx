@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { Select, useId } from "@fluentui/react-components";
 
 function getZones(): Promise<string[]> {
   const request = fetch(
@@ -15,6 +16,7 @@ function TimeZone({
   value: string;
 }) {
   const [zones, setZones] = useState<string[]>([]);
+  const selectId = useId();
 
   useEffect(() => {
     getZones().then((result) => setZones(result));
@@ -22,10 +24,14 @@ function TimeZone({
   const options = zones.map((zone) => <option key={zone}>{zone}</option>);
   return (
     <>
-      <p>Choose a zone</p>
-      <select value={value} onChange={(e) => onZoneChange(e.target.value)}>
+      <label htmlFor={selectId}>Choose a zone</label>
+      <Select
+        id={selectId}
+        value={value}
+        onChange={(e) => onZoneChange(e.target.value)}
+      >
         {options}
-      </select>
+      </Select>
     </>
   );
 }
