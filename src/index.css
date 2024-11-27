@@ -1,0 +1,10 @@
+body {
+  width: 100%;
+  max-width: 1400px;
+  margin: 0 auto;
+  background-color: var(--background-navy);
+}
+
+:root {
+  --background-navy: #0a0d1c;
+}
