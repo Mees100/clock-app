@@ -1,5 +1,21 @@
 import { useEffect, useState } from "react";
-import { Select, useId } from "@fluentui/react-components";
+import { Display, Select, useId } from "@fluentui/react-components";
+// import { makeStyles } from "@fluentui/react-components";
+import { makeStyles, shorthands } from "@griffel/react";
+
+const useClasses = makeStyles({
+  label: {
+    display: "flex",
+    width: "100%",
+    backgroundColor: "black",
+    color: "white",
+    fontSize: "30px",
+    justifyContent: "center",
+    height: "50px",
+    alignItems: "center",
+    padding: "25px",
+  },
+});
 
 function getZones(): Promise<string[]> {
   const request = fetch(
@@ -17,14 +33,17 @@ function TimeZone({
 }) {
   const [zones, setZones] = useState<string[]>([]);
   const selectId = useId();
+  const classes = useClasses();
 
   useEffect(() => {
     getZones().then((result) => setZones(result));
   }, []);
   const options = zones.map((zone) => <option key={zone}>{zone}</option>);
   return (
-    <>
-      <label htmlFor={selectId}>Choose a zone</label>
+    <div>
+      <label htmlFor={selectId} className={classes.label}>
+        Choose a zone
+      </label>
       <Select
         id={selectId}
         value={value}
@@ -32,7 +51,7 @@ function TimeZone({
       >
         {options}
       </Select>
-    </>
+    </div>
   );
 }
 

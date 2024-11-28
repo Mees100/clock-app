@@ -4,7 +4,6 @@ body {
   margin: 0 auto;
   background-color: var(--background-navy);
 }
-
 :root {
   --background-navy: #0a0d1c;
 }
