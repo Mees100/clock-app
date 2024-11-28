@@ -5,7 +5,7 @@ import TimeZone from "./TimeZone";
 function App() {
   const [zone, setZone] = useState<string>("Europe/Amsterdam");
   return (
-    <div>
+    <div style={{ width: "50%", margin: "0 auto" }}>
       <TimeZone onZoneChange={(zone: string) => setZone(zone)} value={zone} />
       <Time zone={zone} />
     </div>

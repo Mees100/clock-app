@@ -31,6 +31,7 @@ function Time({ zone }: { zone: string }) {
             color: "white",
             padding: "25px",
             justifyContent: "center",
+            fontSize: "17px",
           }}
         >
           Het is in {zone}: {time.dateTime}

@@ -7,9 +7,9 @@ const useClasses = makeStyles({
   label: {
     display: "flex",
     width: "100%",
-    backgroundColor: "black",
+    // backgroundColor: "black",
     color: "white",
-    fontSize: "30px",
+    fontSize: "20px",
     justifyContent: "center",
     height: "50px",
     alignItems: "center",
@@ -45,7 +45,8 @@ function TimeZone({
         Choose a zone
       </label>
       <Select
-        id={selectId}
+        id={`${selectId}-filledDarker`}
+        appearance="filled-darker"
         value={value}
         onChange={(e) => onZoneChange(e.target.value)}
       >
