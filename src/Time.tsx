@@ -23,7 +23,16 @@ function Time({ zone }: { zone: string }) {
     <div>
       {typeof time === "undefined" && <Spinner />}
       {time && (
-        <span>
+        <span
+          style={{
+            backgroundColor: " #0a0d1c",
+            width: "100%",
+            display: "flex",
+            color: "white",
+            padding: "25px",
+            justifyContent: "center",
+          }}
+        >
           Het is in {zone}: {time.dateTime}
         </span>
       )}

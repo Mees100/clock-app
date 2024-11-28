@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { Display, Select, useId } from "@fluentui/react-components";
 // import { makeStyles } from "@fluentui/react-components";
-import { makeStyles, shorthands } from "@griffel/react";
+import { makeStyles } from "@griffel/react";
 
 const useClasses = makeStyles({
   label: {
