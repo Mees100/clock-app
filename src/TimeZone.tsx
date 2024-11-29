@@ -1,13 +1,11 @@
 import { useEffect, useState } from "react";
-import { Display, Select, useId } from "@fluentui/react-components";
-// import { makeStyles } from "@fluentui/react-components";
+import { Select, useId } from "@fluentui/react-components";
 import { makeStyles } from "@griffel/react";
 
 const useClasses = makeStyles({
   label: {
     display: "flex",
     width: "100%",
-    // backgroundColor: "black",
     color: "white",
     fontSize: "20px",
     justifyContent: "center",

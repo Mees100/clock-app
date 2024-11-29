@@ -1,9 +1,21 @@
 import { useEffect, useState } from "react";
-import { Spinner } from "@fluentui/react-components";
+import { makeStyles, Spinner } from "@fluentui/react-components";
 
 type CurrentTime = {
   dateTime: string;
 };
+
+const useStyles = makeStyles({
+  currentTime: {
+    backgroundColor: " #0a0d1c",
+    width: "100%",
+    display: "flex",
+    color: "white",
+    padding: "25px",
+    justifyContent: "center",
+    fontSize: "17px",
+  },
+});
 
 function getTime(zone: string): Promise<CurrentTime> {
   const request = fetch(
@@ -14,6 +26,8 @@ function getTime(zone: string): Promise<CurrentTime> {
 
 function Time({ zone }: { zone: string }) {
   const [time, setTime] = useState<CurrentTime>();
+  const classes = useStyles();
+
   useEffect(() => {
     setTime(undefined);
     getTime(zone).then((r) => setTime(r));
@@ -23,17 +37,7 @@ function Time({ zone }: { zone: string }) {
     <div>
       {typeof time === "undefined" && <Spinner />}
       {time && (
-        <span
-          style={{
-            backgroundColor: " #0a0d1c",
-            width: "100%",
-            display: "flex",
-            color: "white",
-            padding: "25px",
-            justifyContent: "center",
-            fontSize: "17px",
-          }}
-        >
+        <span className={classes.currentTime}>
           Het is in {zone}: {time.dateTime}
         </span>
       )}
