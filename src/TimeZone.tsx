@@ -1,15 +1,13 @@
 import { useEffect, useState } from "react";
-import { Display, Select, useId } from "@fluentui/react-components";
-// import { makeStyles } from "@fluentui/react-components";
-import { makeStyles, shorthands } from "@griffel/react";
+import { Select, useId } from "@fluentui/react-components";
+import { makeStyles } from "@griffel/react";
 
 const useClasses = makeStyles({
   label: {
     display: "flex",
     width: "100%",
-    backgroundColor: "black",
     color: "white",
-    fontSize: "30px",
+    fontSize: "20px",
     justifyContent: "center",
     height: "50px",
     alignItems: "center",
@@ -45,7 +43,8 @@ function TimeZone({
         Choose a zone
       </label>
       <Select
-        id={selectId}
+        id={`${selectId}-filledDarker`}
+        appearance="filled-darker"
         value={value}
         onChange={(e) => onZoneChange(e.target.value)}
       >
