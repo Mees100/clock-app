@@ -1,5 +1,7 @@
 # Clock-app
 
+[View the demo](https://mees100.github.io/clock-app/)
+
 ## Description:
 
 This app demonstrates:
