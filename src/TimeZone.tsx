@@ -15,11 +15,18 @@ const useClasses = makeStyles({
   },
 });
 
-function getZones(): Promise<string[]> {
-  const request = fetch(
-    "https://www.timeapi.io/api/timezone/availabletimezones"
-  );
-  return request.then((response) => response.json());
+async function getZones(): Promise<string[] | undefined> {
+  try {
+    const response = await fetch(
+      "https://www.timeapi.io/api/timezone/availabletimezones"
+    );
+    if (response.ok) {
+      return await response.json();
+    }
+    throw new Error("Request failed");
+  } catch (error) {
+    console.error(error);
+  }
 }
 
 function TimeZone({
@@ -34,7 +41,11 @@ function TimeZone({
   const classes = useClasses();
 
   useEffect(() => {
-    getZones().then((result) => setZones(result));
+    getZones().then((result) => {
+      if (result !== undefined) {
+        setZones(result);
+      }
+    });
   }, []);
   const options = zones.map((zone) => <option key={zone}>{zone}</option>);
   return (

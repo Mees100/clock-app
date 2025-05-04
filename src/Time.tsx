@@ -17,11 +17,18 @@ const useStyles = makeStyles({
   },
 });
 
-function getTime(zone: string): Promise<CurrentTime> {
-  const request = fetch(
-    `https://www.timeapi.io/api/time/current/zone?timeZone=${zone}`
-  );
-  return request.then((response) => response.json());
+async function getTime(zone: string): Promise<CurrentTime | undefined> {
+  try {
+    const response = await fetch(
+      `https://www.timeapi.io/api/time/current/zone?timeZone=${zone}`
+    );
+    if (response.ok) {
+      return await response.json();
+    }
+    throw new Error("Request failed");
+  } catch (error) {
+    console.error(error);
+  }
 }
 
 function Time({ zone }: { zone: string }) {

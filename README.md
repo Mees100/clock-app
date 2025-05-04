@@ -11,7 +11,7 @@ This app demonstrates:
   - the json response body
   - props
   - return
-- use async code with promise and then
+- use async functions with await
 - use useEffect with a dependency zone, to define when to call fetch and update the state
 - use conditionals in jsx to show a spinner when data is loading and time if loading is finished
 - share state (props) between components from parent to child
